@@ -27,6 +27,7 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include <getopt.h>
+#include <sys/param.h>
 #include <sys/event.h>
 #include <sys/procctl.h>
 #include <sys/stat.h>
@@ -411,7 +412,7 @@ static int reap_zombies(pid_t pid1, int *pid1_exitcode)
 	}
 }
 
-#ifdef __FreeBSD__
+#if defined(__FreeBSD__) && __FreeBSD_version < 1400093
 
 char *secure_getenv(const char *name)
 {
